@@ -1,0 +1,95 @@
+const express = require('express')
+const router = express.Router()
+
+const mongoose = require('mongoose')
+const { Schema } = mongoose
+
+const esquemaUsuario = new Schema({
+    nombre: String,
+    email: String,
+    telefono: String,
+    idUsuario: String
+})
+
+const ModeloUsuario = mongoose.model('usuarios', esquemaUsuario)
+module.exports = router
+
+router.post('/agregarusuario', async (req, res) => {
+    try {
+      const nuevousuario = new ModeloUsuario({
+        nombre: req.body.nombre,
+        email: req.body.email,
+        telefono: req.body.telefono,
+        idUsuario: req.body.idUsuario
+      });
+  
+      await nuevousuario.save();
+      res.send('Usuario agregado correctamente');
+    } catch (error) {
+      res.status(500).send('Error al agregar el usuario');
+    }
+  });
+  
+
+
+
+
+// router.post('/agregarusuario', (req,res) =>{
+//     const nuevousuario = new ModeloUsuario({
+//         nombre: req.body.nombre,
+//         email: req.body.email,
+//         telefono: req.body.telefono,
+//         idUsuario: req.body.idUsuario
+//     })
+//     nuevousuario.save(function(err){
+//         if(!err){
+//             res.send('Usuario agregado correctamente')
+//         }else{
+//             res.send(err)
+//         }
+//     })
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Ruta ejemplo:
+// router.get('/ejemplo', (req, res) => {
+//     res.end('Saludo cargado desde la ruta de ejemplo')
+// })
+
+// const express = require('express')
+// const router = express.Router()
+
+// const mongoose = require('mongoose')
+// const eschema = mongoose.eschema
+
+// const eschemausuario = new eschema({
+//     nombre: String,
+//     email: String,
+//     telefono: String,
+//     idusuario: String
+// })
+
+// const Modelousuario = mongoose.Model('usuarios', eschemausuario)
+// module.exports = router
+
+// router.get('/ejemplo', (req,res) =>{
+//     res.end('Saludo carga desde ruta ejemplo')
+// })
