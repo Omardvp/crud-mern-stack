@@ -34,7 +34,7 @@ function App() {
       <Routes>
         <Route path='/' element={<ListaUsuarios />}/>
         <Route path='/agregarusuario' element={<AgregarUsuario />}/>
-        <Route path='/editarusuario' element={<EditarUsuario />}/>
+        <Route path='/editarusuario/:idUsuario' element={<EditarUsuario />}/>
       </Routes>
      </BrowserRouter>
      

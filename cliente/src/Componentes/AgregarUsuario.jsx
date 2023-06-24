@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import uniquid from 'uniqid';
 import axios from 'axios'
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
 
 export const AgregarUsuario = () => {
- 
+  //Hooks
   const [nombre, setNombre] = useState('')
   const [email, setEmail] = useState('')
   const [telefono, setTelefono] = useState('')
- 
+ //Navigate
+  const navegar = useNavigate()
   function agregarUsuario() {
     var usuario = {
       nombre: nombre,
@@ -18,7 +21,15 @@ export const AgregarUsuario = () => {
     console.log(usuario)
     axios.post('/api/usuario/agregarusuario', usuario)
     .then(res =>{
-      alert(res)
+      // console.log(res.data)
+      // alert(res.data)
+      Swal.fire(
+        'Perfecto!',
+        'El usuario se creo correctamente!',
+        'success'
+      )
+      console.log(res)
+      // navegar(0)
     })
     .then(err => {console.log(err)})
   }
